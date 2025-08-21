@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Juntos – Tim Saltuklaroglu</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #111;
+      color: #eee;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    .controls {
+      padding: 1rem;
+      background-color: #111;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+    }
+
+    #viewer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding-top: 4rem;
+    }
+
+    #imageWrapper {
+      position: relative;
+      display: inline-block;
+      transform-origin: center center;
+      transition: transform 0.2s ease;
+    }
+
+    .art-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      max-width: 100%;
+      height: auto;
+    }
+
+    #overlay {
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    input[type="color"],
+    input[type="range"] {
+      margin: 0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <label>Background:
+      <input type="color" id="bgColor" value="#cccccc">
+    </label>
+
+    <label>Line Color:
+      <input type="color" id="lineColor" value="#ffffff">
+    </label>
+
+    <label>Zoom:
+      <input type="range" id="zoomSlider" min="0.5" max="3" step="0.01" value="1">
+    </label>
+  </div>
+
+  <div id="viewer">
+    <div id="imageWrapper">
+      <img id="drawingImage" class="art-layer" src="images/juntostransparent-small.png" alt="Drawing">
+      <img id="overlay" class="art-layer" src="images/juntostransparent-small.png" alt="Overlay">
+    </div>
+  </div>
+
+  <script>
+    const bgColor = document.getElementById('bgColor');
+    const lineColor = document.getElementById('lineColor');
+    const zoomSlider = document.getElementById('zoomSlider');
+    const overlay = document.getElementById('overlay');
+    const imageWrapper = document.getElementById('imageWrapper');
+
+    // ✅ Set background on the image container so it zooms with the image
+    imageWrapper.style.backgroundColor = bgColor.value;
+    bgColor.addEventListener('input', () => {
+      imageWrapper.style.backgroundColor = bgColor.value;
+    });
+
+    // ✅ Update overlay line color using filter and blend mode
+    function updateLineColor() {
+      overlay.style.mixBlendMode = 'screen';
+      overlay.style.filter = `
+        brightness(0)
+        saturate(100%)
+        sepia(100%)
+        hue-rotate(0deg)
+        invert(1)
+        drop-shadow(0 0 0 ${lineColor.value})
+      `;
+    }
+    lineColor.addEventListener('input', updateLineColor);
+    updateLineColor(); // Trigger once on load
+
+    // ✅ Zoom effect
+    zoomSlider.addEventListener('input', () => {
+      const zoom = zoomSlider.value;
+      imageWrapper.style.transform = `scale(${zoom})`;
+    });
+  </script>
+
+</body>
+</html>

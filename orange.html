@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orange</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    .controls {
+      margin: 1rem;
+    }
+
+    #container {
+      display: inline-block;
+      position: relative;
+      width: auto;
+      max-width: 90vw;
+    }
+
+    #background {
+      background-color: #000;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    #drawing {
+      background-color: white;
+      width: auto;
+      height: auto;
+      aspect-ratio: auto;
+      mask-image: url('images/orange-transparent.png');
+      -webkit-mask-image: url('images/orange-transparent.png');
+      mask-size: contain;
+      -webkit-mask-size: contain;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-position: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <label for="wallColor">Wall Color:</label>
+    <input type="color" id="wallColor" value="#111111">
+
+    <label for="bgColor">Artwork Background:</label>
+    <input type="color" id="bgColor" value="#000000">
+
+    <label for="fgColor">Line Color:</label>
+    <input type="color" id="fgColor" value="#ffffff">
+  </div>
+
+  <div id="container">
+    <div id="background">
+      <div id="drawing">
+        <img src="images/orange-transparent.png" style="visibility: hidden; width: 100%;" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const wall = document.body;
+    const bg = document.getElementById("background");
+    const fg = document.getElementById("drawing");
+
+    document.getElementById("wallColor").addEventListener("input", e => {
+      wall.style.backgroundColor = e.target.value;
+    });
+
+    document.getElementById("bgColor").addEventListener("input", e => {
+      bg.style.backgroundColor = e.target.value;
+    });
+
+    document.getElementById("fgColor").addEventListener("input", e => {
+      fg.style.backgroundColor = e.target.value;
+    });
+  </script>
+
+</body>
+</html>

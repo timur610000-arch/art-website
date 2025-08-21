@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>tryp – Zoom View</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.1.0/openseadragon.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+    }
+    header {
+      text-align: center;
+      padding: 1rem;
+    }
+    #openseadragon {
+      width: 100%;
+      height: 90vh;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>tryp – Look Closer</h1>
+    <nav>
+      <a href="index.html" style="color: #0af;">Home</a> |
+      <a href="gallery.html" style="color: #0af;">Gallery</a>
+    </nav>
+  </header>
+
+  <div id="openseadragon"></div>
+
+  <script>
+    OpenSeadragon({
+      id: "openseadragon",
+      prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.1.0/images/",
+      tileSources: {
+        type: 'image',
+        url: 'images/tryp-display.jpg'  // use high-res version here
+      },
+      gestureSettingsMouse: {
+        clickToZoom: true,
+        scrollToZoom: true,
+        dblClickToZoom: true,
+        pinchToZoom: true
+      },
+      showRotationControl: true,
+      maxZoomPixelRatio: 4, // allows deeper zoom
+      visibilityRatio: 1.0,
+      constrainDuringPan: false
+    });
+  </script>
+
+</body>
+</html>

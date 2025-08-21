@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photoshop-style Effects Demo</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 1rem;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem;
+    }
+
+    .effect {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .effect img {
+      max-width: 300px;
+      height: auto;
+      border: 2px solid #444;
+      border-radius: 10px;
+      transition: all 0.4s ease;
+    }
+
+    .grayscale img {
+      filter: grayscale(100%);
+    }
+
+    .sepia img {
+      filter: sepia(100%);
+    }
+
+    .contrast img {
+      filter: contrast(180%) brightness(90%);
+    }
+
+    .hover-zoom img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #0af;
+    }
+
+    .blend-container {
+      background-color: #ccc;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .blend-container img {
+      mix-blend-mode: multiply;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Photoshop-Style Effects (HTML/CSS Demo)</h1>
+  <div class="container">
+    <div class="effect">
+      <h3>Original</h3>
+      <img src="images/beds-eff4.jpg" alt="Original" />
+    </div>
+    <div class="effect grayscale">
+      <h3>Grayscale</h3>
+      <img src="images/beds-eff4.jpg" alt="Grayscale" />
+    </div>
+    <div class="effect sepia">
+      <h3>Sepia</h3>
+      <img src="images/beds-eff4.jpg" alt="Sepia" />
+    </div>
+    <div class="effect contrast">
+      <h3>Contrast Boost</h3>
+      <img src="images/beds-eff4.jpg" alt="Contrast" />
+    </div>
+    <div class="effect hover-zoom">
+      <h3>Hover Zoom</h3>
+      <img src="images/beds-eff4.jpg" alt="Zoom on Hover" />
+    </div>
+    <div class="effect">
+      <h3>Multiply Blend</h3>
+      <div class="blend-container">
+        <img src="images/beds-eff4.jpg" alt="Blend Mode Multiply" />
+      </div>
+    </div>
+  </div>
+</body>
+</html>

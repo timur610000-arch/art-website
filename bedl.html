@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>bedl – Tim Saltuklaroglu</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    .controls {
+      margin: 1rem;
+    }
+
+    .controls label {
+      display: inline-block;
+      width: 160px;
+      text-align: right;
+      margin-right: 0.5rem;
+    }
+
+    .controls span {
+      margin-left: 0.5rem;
+      font-family: monospace;
+    }
+
+    #container {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      aspect-ratio: 768 / 1152;
+      margin: auto;
+    }
+
+    #background {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+    }
+
+    #drawing {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      mask-image: url('images/bedl-transparent.png');
+      -webkit-mask-image: url('images/bedl-transparent.png');
+      mask-size: contain;
+      -webkit-mask-size: contain;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-position: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <div>
+      <label for="wallColor">Wall Color:</label>
+      <input type="color" id="wallColor" value="#111111">
+      <span id="wallHex">#111111</span>
+    </div>
+    <div>
+      <label for="bgColor">Artwork Background:</label>
+      <input type="color" id="bgColor" value="#000000">
+      <span id="bgHex">#000000</span>
+    </div>
+    <div>
+      <label for="fgColor">Line Color:</label>
+      <input type="color" id="fgColor" value="#ffffff">
+      <span id="fgHex">#ffffff</span>
+    </div>
+  </div>
+
+  <div id="container">
+    <div id="background"></div>
+    <div id="drawing"></div>
+  </div>
+
+  <script>
+    const wall = document.body;
+    const bg = document.getElementById("background");
+    const fg = document.getElementById("drawing");
+
+    function updateHex(id, value) {
+      document.getElementById(id).textContent = value.toUpperCase();
+    }
+
+    document.getElementById("wallColor").addEventListener("input", e => {
+      wall.style.backgroundColor = e.target.value;
+      updateHex("wallHex", e.target.value);
+    });
+
+    document.getElementById("bgColor").addEventListener("input", e => {
+      bg.style.backgroundColor = e.target.value;
+      updateHex("bgHex", e.target.value);
+    });
+
+    document.getElementById("fgColor").addEventListener("input", e => {
+      fg.style.backgroundColor = e.target.value;
+      updateHex("fgHex", e.target.value);
+    });
+  </script>
+
+</body>
+</html>

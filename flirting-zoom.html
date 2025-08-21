@@ -1,0 +1,46 @@
+<!-- firstone-zoom.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firstone – Zoom View</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.1.0/openseadragon.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    #openseadragon {
+      width: 90%;
+      height: 90vh;
+      margin: 2vh auto;
+      border: 2px solid #444;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Flirting – Look Closer</h1>
+  <div id="openseadragon"></div>
+  <script>
+    OpenSeadragon({
+      id: "openseadragon",
+      prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.1.0/images/",
+      tileSources: {
+        type: 'image',
+        url: 'images/flirting-display.jpg'
+      },
+      showRotationControl: true,
+      gestureSettingsTouch: {
+        pinchToZoom: true,
+        scrollToZoom: true,
+        clickToZoom: true
+      }
+    });
+  </script>
+</body>
+</html>
